@@ -28,6 +28,7 @@ public class PersonController {
     private GroupRemote groupRemote;
     private PersonDTO personDTO;
 
+    // Method that wants all persons returned, and they need to contain the parameters specified
     @GetMapping
     public List<PersonDTO> getAllPersons(
             @RequestParam(name = "search", required = false) String search,

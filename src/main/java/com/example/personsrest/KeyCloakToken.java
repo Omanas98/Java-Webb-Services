@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+// Declaring all essential user information for the UserToken
 @Data
 public class KeyCloakToken {
     String accessToken;
@@ -20,6 +21,7 @@ public class KeyCloakToken {
     String sessionState;
     String scope;
 
+    // Assigning the variables to the fetched JSON-properties
     @JsonCreator
     public KeyCloakToken(@JsonProperty("access_token") String accessToken,
                          @JsonProperty("expiration_in") int expirationIn,
@@ -39,6 +41,8 @@ public class KeyCloakToken {
         this.scope = scope;
     }
 
+    // Here we're obtaining , keyCloakBaseUrl, then trying to distinguish if this Url
+    // matches with any from the API, and if it exists we want to pick out different data attributes
     public static Mono<KeyCloakToken> acquire(String keyCloakBaseUrl, String realm, String clientId,
                                               String username, String password) {
         WebClient webClient = WebClient.builder()
@@ -59,6 +63,7 @@ public class KeyCloakToken {
                 .last();
     }
 
+    // Here we're obtaining a specific User with a name and passwordfrom the API on the specified Url
     public static void main(String[] args) {
         KeyCloakToken token = acquire("https://iam.sensera.se/", "test", "group-api",
                 "user", "djnJnPf7VCQvp3Fc")

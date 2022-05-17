@@ -65,6 +65,7 @@ public class PersonService {
         return personRepository.save(person);
     }
 
+    // Here we're listing all names and cities on a new Page with the help of PageAble
     public Page<Person> getAllNamesAndCities(String search, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
